@@ -3,6 +3,12 @@
 ## Overview 
 End-to-end ML example from Digital Marketing Mastery Module which builds a decision-tree classifier on the classic Iris dataset using scikit-learn.
 
+## Outputs
+Running the training script produces:
+
+- outputs/confusion_matrix.png – confusion matrix visualization
+- outputs/iris_model.joblib – saved trained decision tree model
+
 ## Quick start 
 ```bash 
 git clone https://github.com/Xenbrane-1/iris-classifier.git
