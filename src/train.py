@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import sklearn
 import seaborn as sns
 import argparse
+import joblib
 
 
 from sklearn.datasets import load_iris
@@ -11,6 +12,9 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
+
+# Create outputs folder if it doesn't exist
+os.makedirs("outputs", exist_ok=True)
 
 # Parse command line arguments
 parser = argparse.ArgumentParser()
@@ -33,6 +37,9 @@ model = DecisionTreeClassifier(random_state=args.random_state)
 # Train (fit) the model: We train the decision tree using the training data:
 model.fit(X_train, y_train)
 
+# Save trained model
+joblib.dump(model, "outputs/iris_model.joblib")
+
 # Make predictions: We use the trained model to make predictions on the test set.
 y_pred = model.predict(X_test)
 print("Predictions", y_pred[:5])
@@ -43,9 +50,6 @@ print("True labels", y_test[:5])
 # Accuracy 
 accuracy = accuracy_score(y_test, y_pred)
 print("Accuracy:", accuracy)
-
-# Create outputs folder if it doesn't exist
-os.makedirs("outputs", exist_ok=True)
 
 # Confusion Matrix
 cm = confusion_matrix(y_test, y_pred)
